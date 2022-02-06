@@ -2,9 +2,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const profileSchema = new Schema({
-  first_name: String,
-  last_name: String,
-  location: String,
+  username: String,
+  firstname: String,
+  lastname: String,
+  email: String,
+  password: String,
+  date:{
+    type:Date,
+    default:Date.now
+  }
+
 });
 
-mongoose.model("profiles", profileSchema);
+const Profile = mongoose.model("profiles", profileSchema);
+
+module.exports = Profile;

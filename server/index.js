@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 // IMPORT YOUR SCHEMAS HERE
 require("./models/Profiles"); //This is just an example. Don't forget to delete this
@@ -16,6 +17,7 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
 });
 
 app.use(bodyParser.json());
+app.use(cors())
 
 // IMPORT YOUR API ROUTES HERE
 // Below is just an example. Don't forget to delete it. 

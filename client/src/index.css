@@ -21,3 +21,44 @@ code {
   left: 0;
   width: 100%;
 }
+
+.modal{
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  transform: transform(-40%, -40%);
+  background-color: rgb(235, 195, 64);
+  padding: 50px;
+  z-index: 2;
+  border-radius: 12px;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+}
+
+.nav{
+  background-color: aqua;
+  padding: 20px;
+}
+
+.nav-buttons{
+  float: right;
+}
+
+.username{
+  float: right;
+}
+
+.x-btn{
+  float: right;
+  cursor: pointer;
+}

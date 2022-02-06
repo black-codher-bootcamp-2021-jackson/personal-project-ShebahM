@@ -1,18 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from 'react-router-dom';
+import Modal from "./Modal";
 // import '../styles/Header.css';
 
 const Header = (props) => {
-    const {isLoggedIn, username, setIsLoggedIn} = props;
+    const {isLoggedIn, setIsLoggedIn} = props;
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className="nav">
             <Link to="/" id="homelink"> Home </Link> |
             <Link to="/About" id="aboutlink"> About </Link> |
-            <Link to="/Contact-Us" id="contactus"> Contact Us </Link> 
-            <div>
-                <button>Sign Up</button>
-                <button>Login</button>
+            <Link to="/Contact-Us" id="contactus"> Contact Us </Link>
+            {isLoggedIn ?
+            <div className="username">
+            <Link  to="/Profile"> Username </Link> |
+            <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
             </div>
+            :
+            <div className="nav-buttons">
+                <button onClick={() => setIsOpen(true)}>Login</button>
+                <Link to="/SignUp"><button>Sign Up</button></Link>
+            </div> }
+            
+            {isOpen ?
+            <div className="overlay" >
+                <div className="modal">
+                    <Modal open={isOpen} onClose={() => setIsOpen(false)} setIsLoggedIn={setIsLoggedIn}/>
+                </div>
+            </div>
+            : 
+            null}
+            {/* <div className="modal">
+                
+                    <p>This is the modal</p>
+                </Modal> */}
+            {/* </div> */}
             {/* <div className="menu">
                 {isLoggedIn && (
                     <span>

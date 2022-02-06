@@ -2,13 +2,28 @@ const mongoose = require("mongoose");
 const Profile = mongoose.model("profiles");
 
 const profileRoutes = (app) => {
-  app.get(`/api/profile`, async (req, res) => {
+  app.get(`/profile`, async (req, res) => {
     const profiles = await Profile.find();
 
     return res.status(200).send(profiles);
   });
 
-  app.post(`/api/profile`, async (req, res) => {
+  app.post('/profile', async (req, res) => {
+
+    const newProfile = new Profile({
+      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password
+    })
+
+    console.log(newProfile)
+
+    newProfile.save();
+  })
+
+  app.post(`/profile`, async (req, res) => {
     const profile = await Profile.create(req.body);
 
     return res.status(201).send({
@@ -17,7 +32,7 @@ const profileRoutes = (app) => {
     });
   });
 
-  app.put(`/api/profile/:id`, async (req, res) => {
+  app.patch(`/profile/:id`, async (req, res) => {
     const { id } = req.params;
 
     const profile = await Profile.findByIdAndUpdate(id, req.body);
@@ -28,7 +43,7 @@ const profileRoutes = (app) => {
     });
   });
 
-  app.delete(`/api/profile/:id`, async (req, res) => {
+  app.delete(`/profile/:id`, async (req, res) => {
     const { id } = req.params;
 
     const profile = await Profile.findByIdAndDelete(id);

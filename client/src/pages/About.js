@@ -6,6 +6,7 @@ const About = (props) => {
         <>
             <Header />
             <h1>About Us</h1>
+            <p>A diabetes data logger, that allows a user to store their medical information, such as blood sugar level and blood pressure.</p>
             <Footer />
         </>
         
