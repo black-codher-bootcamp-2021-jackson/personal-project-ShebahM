@@ -14,6 +14,14 @@ import {getAllProfiles} from "./services/profileService";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profiles, setProfiles] = useState(null);
+  const [username, setUserName] = useState();
+  const [input, setInput] = useState({
+    "username": '',
+    "firstname": '',
+    "lastname": '',
+    "email": '',
+    "password": ''
+})
 
   useEffect(() => {
     async function getProfiles() {
@@ -26,14 +34,18 @@ function App() {
     getProfiles();
   }, [profiles])
 
+  // if(!token) {
+  //   return <Modal setToken={setToken} />
+  // }
+
   return (
   <Router>
     <Routes>
-      <Route path="/" element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/" element={<Home username={username} setUserName={setUserName} input={input} setInput={setInput} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
       <Route path="/About" element={<About />} />
       <Route path="/Contact-Us" element={<Contact />} />
-      <Route path="/SignUp" element={<SignUp isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
-      <Route path="/Profile" element={<Profile isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/SignUp" element={<SignUp input={input} setInput={setInput} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/Profile" element={<Profile profiles={profiles} setProfiles={setProfiles} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
     </Routes>
   </Router>
   );

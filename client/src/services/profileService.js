@@ -8,5 +8,11 @@ const getAllProfiles = async () => {
   return response.data || [];
 };
 
+const getProfile = async () => {
+  const response = await axios.get(`/profile/:username`);
+
+  return response.data || [];
+};
+
 // All of the endpoints in this file can be exported below
-export { getAllProfiles };
+export { getAllProfiles, getProfile };

@@ -48,6 +48,12 @@ code {
 .nav{
   background-color: aqua;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-style:link{
+  text-decoration: none;
 }
 
 .nav-buttons{

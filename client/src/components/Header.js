@@ -4,19 +4,25 @@ import Modal from "./Modal";
 // import '../styles/Header.css';
 
 const Header = (props) => {
-    const {isLoggedIn, setIsLoggedIn} = props;
+    const {isLoggedIn, setIsLoggedIn, input, setInput} = props;
 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="nav">
-            <Link to="/" id="homelink"> Home </Link> |
-            <Link to="/About" id="aboutlink"> About </Link> |
-            <Link to="/Contact-Us" id="contactus"> Contact Us </Link>
+            <div className="logo">
+                <img src="" alt="logo" />
+            </div>
+            <div className="nav-style">
+                <Link to="/" id="homelink"> Home </Link> |
+                <Link to="/About" id="aboutlink"> About </Link> |
+                <Link to="/Contact-Us" id="contactus"> Contact Us </Link>
+            </div>
+            
             {isLoggedIn ?
             <div className="username">
-            <Link  to="/Profile"> Username </Link> |
-            <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
+                <Link  to="/Profile"> Username </Link> |
+                <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
             </div>
             :
             <div className="nav-buttons">
@@ -27,11 +33,12 @@ const Header = (props) => {
             {isOpen ?
             <div className="overlay" >
                 <div className="modal">
-                    <Modal open={isOpen} onClose={() => setIsOpen(false)} setIsLoggedIn={setIsLoggedIn}/>
+                    <Modal input={input} setInput={setInput} open={isOpen} onClose={() => setIsOpen(false)} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
                 </div>
             </div>
             : 
             null}
+             
             {/* <div className="modal">
                 
                     <p>This is the modal</p>
