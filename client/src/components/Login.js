@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import {Navigate} from "react-router-dom";
 import axios from "axios";
+import { Modal } from "react-bootstrap";
 
-// function loginUser() {
-//     axios.get('http://localhost:8080/login')
-// }
+// login not working, routing to empty signup page
+// TODO - route to profile page after login
+//      - username to display in the top right-hand corner
 
-const Modal = (props) => {
+const Login = (props) => {
     const {open, onClose, isLoggedIn, setIsLoggedIn, username, setUserName} = props;
     
     const [password, setPassword] = useState();
@@ -66,19 +67,26 @@ const Modal = (props) => {
 
     return (
         <>
-            <button className="x-btn" onClick={onClose}>&times;</button>
-            <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label> Username </label>
-                <input onChange={e => setUserName(e.target.value)} type="text" name="username" value={username} placeholder="Username"/>
-                <label> Password </label>
-                <input onChange={e => setPassword(e.target.value)} type="password" name="password" value={password} placeholder="Password" />
-                <button type="submit">Login</button>
-            </form>
-            {isLoggedIn && <Navigate to="/Profile" />}
+            <Modal ></Modal>
         </>
         
     );
 }
 
-export default Modal;
+export default Login;
+
+{/* <button className="x-btn" onClick={onClose}>&times;</button>
+            <h1>Please Log In</h1>
+            <form onSubmit={handleSubmit}>
+                <label> Username </label>
+                <input onChange={e => setUserName(e.target.value)} type="text" name="username" value={username} placeholder="Username" required/>
+                <label> Password </label>
+                <input onChange={e => setPassword(e.target.value)} type="password" name="password" value={password} placeholder="Password" required />
+                <button type="submit">Login</button>
+            </form>
+            <p>Need an Account?<br />
+            <a href="#">Sign Up</a>
+            </p>
+            {isLoggedIn && <Navigate to="/Profile" />} */}
+
+            // const {open, onClose, isLoggedIn, setIsLoggedIn, username, setUserName} = props;

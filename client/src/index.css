@@ -46,11 +46,13 @@ code {
 }
 
 .nav{
-  background-color: aqua;
-  padding: 20px;
+  background-color: "primary";
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
+
+
 
 .nav-style:link{
   text-decoration: none;

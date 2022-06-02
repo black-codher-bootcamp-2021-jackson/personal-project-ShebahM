@@ -1,39 +1,56 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
-import Modal from "./Modal";
-// import '../styles/Header.css';
+import Login from "./Login";
+import Profile from "../pages/Profile";
+import {ButtonGroup, Button, Navbar, Nav, Container} from "react-bootstrap";
+
 
 const Header = (props) => {
     const {isLoggedIn, setIsLoggedIn, input, setInput} = props;
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
-        <div className="nav">
-            <div className="logo">
-                <img src="" alt="logo" />
-            </div>
-            <div className="nav-style">
-                <Link to="/" id="homelink"> Home </Link> |
-                <Link to="/About" id="aboutlink"> About </Link> |
-                <Link to="/Contact-Us" id="contactus"> Contact Us </Link>
-            </div>
+        <div >
             
-            {isLoggedIn ?
-            <div className="username">
-                <Link  to="/Profile"> Username </Link> |
-                <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
-            </div>
-            :
-            <div className="nav-buttons">
-                <button onClick={() => setIsOpen(true)}>Login</button>
-                <Link to="/SignUp"><button>Sign Up</button></Link>
-            </div> }
+            <Container>
+                <Navbar bg="primary" variant="dark">
+                <Navbar.Brand href="/">
+                <img
+                    src="/diabetes-icon.png"
+                    width="50"
+                    height="auto"
+                    className="d-inline-block align-top"
+                    alt="logo"
+                />
+                </Navbar.Brand>
+                <Nav className="me-auto">
+                    <Nav.Link href="/" id="homelink">Home</Nav.Link>
+                    <Nav.Link href="/About" id="aboutlink">About</Nav.Link>
+                    <Nav.Link href="/Contact-Us" id="contactus">Contact Us</Nav.Link>
+                </Nav>
             
-            {isOpen ?
+                {isLoggedIn ?
+                <div className="username">
+                    <Link  to="/Profile"> {`${input.username}`} </Link> |
+                    <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
+                </div>
+                :
+                <ButtonGroup className="nav-buttons">
+                    <Button variant="outline-warning" onClick={handleShow}>Login</Button>
+                    {/* <Link to="/SignUp"><Button>Sign Up</Button></Link> */}
+                    <Button variant="outline-warning" href="/SignUp">Sign Up</Button>
+                </ButtonGroup> }
+                </Navbar>
+            </Container>
+            
+            {show ?
             <div className="overlay" >
                 <div className="modal">
-                    <Modal input={input} setInput={setInput} open={isOpen} onClose={() => setIsOpen(false)} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+                    <Login show={show} onHide={handleClose}/>
                 </div>
             </div>
             : 
@@ -60,3 +77,51 @@ const Header = (props) => {
 }
 
 export default Header;
+
+// const Header = (props) => {
+//     const {isLoggedIn, setIsLoggedIn, input, setInput} = props;
+
+//     const [isOpen, setIsOpen] = useState(false);
+
+//     return (
+//         <div >
+            
+//             <Container>
+//                 <Navbar bg="primary" variant="dark">
+//                 <Navbar.Brand href="/">
+//                 <img
+//                     src="/diabetes-icon.png"
+//                     width="50"
+//                     height="auto"
+//                     className="d-inline-block align-top"
+//                     alt="logo"
+//                 />
+//                 </Navbar.Brand>
+//                 <Nav className="me-auto">
+//                     <Nav.Link href="/" id="homelink">Home</Nav.Link>
+//                     <Nav.Link href="/About" id="aboutlink">About</Nav.Link>
+//                     <Nav.Link href="/Contact-Us" id="contactus">Contact Us</Nav.Link>
+//                 </Nav>
+            
+//                 {isLoggedIn ?
+//                 <div className="username">
+//                     <Link  to="/Profile"> {`${input.username}`} </Link> |
+//                     <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
+//                 </div>
+//                 :
+//                 <ButtonGroup className="nav-buttons">
+//                     <Button variant="outline-warning" onClick={() => setIsOpen(true)}>Login</Button>
+//                     {/* <Link to="/SignUp"><Button>Sign Up</Button></Link> */}
+//                     <Button variant="outline-warning" href="/SignUp">Sign Up</Button>
+//                 </ButtonGroup> }
+//                 </Navbar>
+//             </Container>
+            
+//             {isOpen ?
+//             <div className="overlay" >
+//                 <div className="modal">
+//                     <Modal input={input} setInput={setInput} open={isOpen} onClose={() => setIsOpen(false)} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+//                 </div>
+//             </div>
+//             : 
+//             null}
