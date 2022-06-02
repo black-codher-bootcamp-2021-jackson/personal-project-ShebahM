@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 
 const DataModal = (props) => {
-    const {open, onClose} = props;
+    const {show, handleClose} = props;
 
     const [input, setInput] = useState({
         "bloodpressure": '',
@@ -32,19 +33,26 @@ const DataModal = (props) => {
     }
 
 
-    if (!open) return null
+    if (!show) return null
 
     return (
         <>
-            <button className="x-btn" onClick={onClose}>&times;</button>
-            <h1>Input New Data</h1>
-            <form onSubmit={() => onClose()}>
-                <label> Blood Pressure </label>
-                <input onChange={handleChange} value={input.bloodpressure} type="text" name="bloodpressure" placeholder="e.g. 120/80 mmHg"/>
-                <label> Blood Sugar </label>
-                <input onChange={handleChange} value={input.bloodsugar} type="text" name="bloodsugar" placeholder="e.g. 5.4 mmol/L" />
-                <Link to="/Profile" ><button onClick={handleClick} type="submit">Save Data</button></Link>
-            </form>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Data</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form onSubmit={handleClick}>
+                        <label> Blood Pressure </label>{' '}
+                        <input onChange={handleChange} value={input.bloodpressure} type="text" name="bloodpressure" placeholder="e.g. 120/80 mmHg"/><br />
+                        <label> Blood Sugar </label>{' '}
+                        <input onChange={handleChange} value={input.bloodsugar} type="text" name="bloodsugar" placeholder="e.g. 5.4 mmol/L" />
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" type="submit" onClick={handleClose}>Save Data</Button>
+                </Modal.Footer>
+            </Modal>
         </>
         
     );

@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import Login from "./Login";
-import Profile from "../pages/Profile";
 import {ButtonGroup, Button, Navbar, Nav, Container} from "react-bootstrap";
 
 
@@ -77,51 +76,3 @@ const Header = (props) => {
 }
 
 export default Header;
-
-// const Header = (props) => {
-//     const {isLoggedIn, setIsLoggedIn, input, setInput} = props;
-
-//     const [isOpen, setIsOpen] = useState(false);
-
-//     return (
-//         <div >
-            
-//             <Container>
-//                 <Navbar bg="primary" variant="dark">
-//                 <Navbar.Brand href="/">
-//                 <img
-//                     src="/diabetes-icon.png"
-//                     width="50"
-//                     height="auto"
-//                     className="d-inline-block align-top"
-//                     alt="logo"
-//                 />
-//                 </Navbar.Brand>
-//                 <Nav className="me-auto">
-//                     <Nav.Link href="/" id="homelink">Home</Nav.Link>
-//                     <Nav.Link href="/About" id="aboutlink">About</Nav.Link>
-//                     <Nav.Link href="/Contact-Us" id="contactus">Contact Us</Nav.Link>
-//                 </Nav>
-            
-//                 {isLoggedIn ?
-//                 <div className="username">
-//                     <Link  to="/Profile"> {`${input.username}`} </Link> |
-//                     <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
-//                 </div>
-//                 :
-//                 <ButtonGroup className="nav-buttons">
-//                     <Button variant="outline-warning" onClick={() => setIsOpen(true)}>Login</Button>
-//                     {/* <Link to="/SignUp"><Button>Sign Up</Button></Link> */}
-//                     <Button variant="outline-warning" href="/SignUp">Sign Up</Button>
-//                 </ButtonGroup> }
-//                 </Navbar>
-//             </Container>
-            
-//             {isOpen ?
-//             <div className="overlay" >
-//                 <div className="modal">
-//                     <Modal input={input} setInput={setInput} open={isOpen} onClose={() => setIsOpen(false)} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-//                 </div>
-//             </div>
-//             : 
-//             null}

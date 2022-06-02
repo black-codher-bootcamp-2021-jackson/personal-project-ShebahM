@@ -8,7 +8,7 @@ import { Modal, Button } from "react-bootstrap";
 //      - username to display in the top right-hand corner
 
 const Login = (props) => {
-    const {open, onClose, isLoggedIn, setIsLoggedIn, username, setUserName, show, handleClose} = props;
+    const {onClose, setIsLoggedIn, username, setUserName, show, handleClose} = props;
     
     const [password, setPassword] = useState();
 
