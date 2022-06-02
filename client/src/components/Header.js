@@ -15,37 +15,37 @@ const Header = (props) => {
 
     return (
         <div >
+            <Navbar bg="primary" variant="dark">
+                <Container>
+                    <Navbar.Brand href="/">
+                    <img
+                        src="/diabetes-icon.png"
+                        width="50"
+                        height="auto"
+                        className="d-inline-block align-top"
+                        alt="logo"
+                    />
+                    </Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/" id="homelink">Home</Nav.Link>
+                        <Nav.Link href="/About" id="aboutlink">About</Nav.Link>
+                        <Nav.Link href="/Contact-Us" id="contactus">Contact Us</Nav.Link>
+                    </Nav>
+                
+                    {isLoggedIn ?
+                    <div className="username">
+                        <Link  to="/Profile"> {`${input.username}`} </Link> |
+                        <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
+                    </div>
+                    :
+                    <ButtonGroup className="nav-buttons">
+                        <Button variant="outline-warning" onClick={handleShow}>Login</Button>
+                        {/* <Link to="/SignUp"><Button>Sign Up</Button></Link> */}
+                        <Button variant="outline-warning" href="/SignUp">Sign Up</Button>
+                    </ButtonGroup> }
+                </Container>
+            </Navbar>
             
-            <Container>
-                <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="/">
-                <img
-                    src="/diabetes-icon.png"
-                    width="50"
-                    height="auto"
-                    className="d-inline-block align-top"
-                    alt="logo"
-                />
-                </Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="/" id="homelink">Home</Nav.Link>
-                    <Nav.Link href="/About" id="aboutlink">About</Nav.Link>
-                    <Nav.Link href="/Contact-Us" id="contactus">Contact Us</Nav.Link>
-                </Nav>
-            
-                {isLoggedIn ?
-                <div className="username">
-                    <Link  to="/Profile"> {`${input.username}`} </Link> |
-                    <Link  onClick={() => setIsLoggedIn(false)} to="/"> Log Out </Link>
-                </div>
-                :
-                <ButtonGroup className="nav-buttons">
-                    <Button variant="outline-warning" onClick={handleShow}>Login</Button>
-                    {/* <Link to="/SignUp"><Button>Sign Up</Button></Link> */}
-                    <Button variant="outline-warning" href="/SignUp">Sign Up</Button>
-                </ButtonGroup> }
-                </Navbar>
-            </Container>
             
             {show ?
             <div className="overlay" >
