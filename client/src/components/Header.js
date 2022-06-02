@@ -50,7 +50,7 @@ const Header = (props) => {
             {show ?
             <div className="overlay" >
                 <div className="modal">
-                    <Login show={show} onHide={handleClose}/>
+                    <Login show={show} handleClose={handleClose}/>
                 </div>
             </div>
             : 
